@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Content -->
+
+	<section>
+		<header class="main">
+			<h1>{{ traning.title }}</h1>
+		</header>
+
+		<span class="image main"><img src="{{ traning.get_image }}" style="width: 500px; height: 500px;" alt="" /></span>
+
+		<p>Posted: {{ traning.created }}</p>
+		<p>Author: {{ traning.user.username }}</p>
+		<p>Work Time: {{ traning.working_time }} min</p>
+
+
+		<hr class="major" />
+			{% for image in images %}
+			<img src="{{ image }}" style="width: 500px; height: 500px;" class="img-thumbnail" alt="...">
+			{% endfor %}
+
+		<h2>{{ traning.description|truncatewords:15 }}</h2>
+		<p>{{ traning.description}}</p>
+		<a href="{% url 'update-traning' traning.id %}"><i class="fas fa-edit"></i></a>
+		<a href="{% url 'delete-traning' traning.id %}"><i class="fas fa-trash-alt"></i></a>
+
+
+
+	</section>
+
+{% endblock %}
